@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import Topbar from "./Topbar";
 
 function Header() {
   // Menü
@@ -37,6 +38,7 @@ function Header() {
 
   return (
     <>
+      <Topbar />
       <div id="header" className={scroll ? "scroll" : ""}>
         <div className="container">
           <div className="header">

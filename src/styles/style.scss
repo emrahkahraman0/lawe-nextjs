@@ -18,6 +18,66 @@ body {
   min-height: 100vh;
 }
 
+//Topbar#
+#topbar {
+  width: 100%;
+  background-color: $primary_color;
+  padding: 15px 0;
+
+  //topbar
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    //&_info
+    &_info {
+      display: flex;
+      align-items: center;
+      //&_item
+      &_item {
+        display: flex;
+        align-items: center;
+        margin-right: 100px;
+        &:last-child {
+          margin-right: 0;
+        }
+        i {
+          font-size: 18px;
+          color: $two_color;
+        }
+        a {
+          padding-left: 15px;
+          font-family: $two_family;
+          font-size: $regular_size;
+          font-weight: 400;
+          color: $two_color;
+        }
+      }
+    }
+
+    //&_social
+    &_social {
+      li {
+        display: inline-block;
+        margin-right: 25px;
+        &:last-child {
+          margin-right: 0;
+        }
+        a {
+          color: $two_color;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  //Notebook
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
+}
+
 //Header#
 #header {
   width: 100%;
@@ -53,7 +113,7 @@ body {
         > a {
           font-family: $one_family;
           color: $primary_color;
-          font-weight: medium;
+          font-weight: 600;
           font-size: $medium_size;
           text-transform: capitalize;
           position: relative;
@@ -77,8 +137,8 @@ body {
             }
           }
           &:not(:only-child):after {
-            padding-left: 0;
-            content: "▾";
+            padding-left: 3px;
+            content: "\2b";
           }
         }
 
@@ -106,7 +166,7 @@ body {
             a {
               font-family: $two_family;
               color: $base_color;
-              @include weight(medium);
+              font-weight: 600;
               font-size: $regular_size;
               text-transform: capitalize;
               position: relative;
@@ -305,13 +365,100 @@ body {
 //Footer#
 #footer {
   width: 100%;
-  padding: 15px 0;
-  background-color: $three_color;
+  padding: 100px 0 100px 0;
+  background-position: center;
+  background-size: cover;
+  background: linear-gradient(
+      to bottom,
+      rgba(34, 53, 85, 0.8),
+      rgba(34, 53, 85, 0.8)
+    ),
+    url("/1920x450.png");
 
   //footer
   .footer {
     //&_item
     &_item {
+      .copyright {
+        padding-top: 10px;
+        font-family: $two_family;
+        font-size: $regular_size;
+        font-weight: 400;
+        color: $four_color;
+        line-height: 21px;
+      }
+      //social
+      .social {
+        margin-top: 50px;
+        li {
+          display: inline-block;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
+          }
+          a {
+            i {
+              width: 35px;
+              height: 35px;
+              line-height: 35px;
+              display: flex;
+              justify-content: center;
+              background-color: $two_color;
+              color: $base_color;
+              font-size: $large_size;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+      h6 {
+        font-family: $one_family;
+        font-size: 24px;
+        font-weight: bold;
+        color: $two_color;
+        text-transform: capitalize;
+        padding-bottom: 50px;
+        position: relative;
+        &::before {
+          content: "";
+          width: 30px;
+          height: 1px;
+          background-color: $two_color;
+          position: absolute;
+          bottom: 25px;
+          left: 0;
+        }
+      }
+      //desc
+      .desc {
+        //&_item
+        &_item {
+          display: flex;
+          padding-bottom: 20px;
+          &:last-child {
+            padding-bottom: 0;
+          }
+          i {
+            color: $two_color;
+            font-size: 18px;
+          }
+          p,
+          a {
+            padding-left: 20px;
+            font-family: $two_family;
+            font-size: $regular_size;
+            color: $base_color;
+            line-height: normal;
+          }
+        }
+      }
+      //areas
+      .areas {
+      }
+
+      //links
+      .links {
+      }
     }
   }
 }
