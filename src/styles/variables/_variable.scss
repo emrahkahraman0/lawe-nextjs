@@ -1,0 +1,110 @@
+//Variable.scss
+
+$bg_color: #d9d9d9;
+$base_color: #ffffff;
+$primary_color: #223555;
+$two_color: #b89b5e;
+$three_color: #555555;
+$four_color: #cccccc;
+$five_color: #222222;
+$one_family: "Lora", sans-serif;
+$two_family: "Oxygen", sans-serif;
+$large_size: 18px;
+$medium_size: 16px;
+$regular_size: 14px;
+$small_size: 12px;
+
+//Media
+
+//X_Large
+@mixin x_large() {
+  @media only screen and (max-width: 1400px) {
+    @content;
+  }
+}
+//Large
+@mixin large() {
+  @media only screen and (max-width: 1200px) {
+    @content;
+  }
+}
+//Notebook
+@mixin notebook() {
+  @media only screen and (max-width: 992px) {
+    @content;
+  }
+}
+//Tablet
+@mixin tablet() {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+//X_Tablet
+@mixin x_tablet() {
+  @media only screen and (max-width: 575px) {
+    @content;
+  }
+}
+//Mobil
+@mixin mobil() {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+//Small
+@mixin small() {
+  @media only screen and (max-width: 350px) {
+    @content;
+  }
+}
+//X-Small
+@mixin x_small() {
+  @media only screen and (max-width: 250px) {
+    @content;
+  }
+}
+
+//Font-Weight
+@mixin weight($weight) {
+  $weights: (
+    thin: 100,
+    extra-light: 200,
+    ultra-light: 200,
+    light: 300,
+    normal: 400,
+    book: 400,
+    regular: 400,
+    medium: 500,
+    semi-bold: 600,
+    demi-bold: 600,
+    bold: 700,
+    extra-bold: 800,
+    ultra-bold: 900,
+    heavy: 900,
+    black: 900,
+    ultra: 900,
+    ultra-black: 900,
+    extra-ultra: 900,
+  );
+
+  $output: $weight;
+  @if map-has-key($weights, $weight) {
+    $output: map-get($weights, $weight);
+  }
+
+  font-weight: $output;
+}
+
+//Owl-Carousel
+.owl-carousel .owl-stage,
+.owl-carousel.owl-drag .owl-item {
+  -ms-touch-action: auto;
+  touch-action: auto;
+}
+
+//Align_İtems
+.align_items {
+  display: flex;
+  align-items: center;
+}
