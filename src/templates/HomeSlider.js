@@ -36,49 +36,58 @@ function HomeSlider() {
         <Slider className="home_slider" {...settings}>
           <div className="home_slider_item">
             <Image
-                className="img_fluid"
-                src="/1920x650.png"
-                width={1920}
-                height={650}
-                priority
-                alt="Home Slider 1"
+              className="img_fluid"
+              src="/1920x650.png"
+              width={1920}
+              height={650}
+              priority
+              alt="Home Slider"
             />
-            <div className="slider_caption">
+            <div className="slider_caption container">
               <h5>Welcome to Lawe</h5>
               <h6>Most Successful Law Firm</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              </p>
               <button>Learn More</button>
             </div>
           </div>
           <div className="home_slider_item">
             <Image
-                className="img_fluid"
-                src="/1920x650.png"
-                width={1920}
-                height={650}
-                priority
-                alt="Home Slider 1"
+              className="img_fluid"
+              src="/1920x650.png"
+              width={1920}
+              height={650}
+              priority
+              alt="Home Slider"
             />
-            <div className="slider_caption">
+            <div className="slider_caption container">
               <h5>Welcome to Lawe</h5>
               <h6>Most Successful Law Firm</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              </p>
               <button>Learn More</button>
             </div>
           </div>
           <div className="home_slider_item">
             <Image
-                className="img_fluid"
-                src="/1920x650.png"
-                width={1920}
-                height={650}
-                priority
-                alt="Home Slider 1"
+              className="img_fluid"
+              src="/1920x650.png"
+              width={1920}
+              height={650}
+              priority
+              alt="Home Slider"
             />
-            <div className="slider_caption">
+            <div className="slider_caption container">
               <h5>Welcome to Lawe</h5>
               <h6>Most Successful Law Firm</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              </p>
               <button>Learn More</button>
             </div>
           </div>
