@@ -1,0 +1,75 @@
+//Variable.scss
+
+$base_color: #ffffff;
+$primary_color: #223555;
+$two_color: #B89B5E;
+$three_color: #555555;
+$four_color: #C4C4C4;
+$five_color: #CCCCCC;
+$six_color: #000000;
+$seven_color: #F4F4F4;
+$eight_color: #EEEEEE;
+$one_family: "Lora", sans-serif;
+$two_family: "Oxygen", sans-serif;
+$x_large_size: 20px;
+$large_size: 18px;
+$medium_size: 16px;
+$regular_size: 14px;
+$small_size: 12px;
+
+//Media
+
+//X_Large
+@mixin x_large() {
+  @media only screen and (max-width: 1400px) {
+    @content;
+  }
+}
+//Large
+@mixin large() {
+  @media only screen and (max-width: 1200px) {
+    @content;
+  }
+}
+//Notebook
+@mixin notebook() {
+  @media only screen and (max-width: 992px) {
+    @content;
+  }
+}
+//Tablet
+@mixin tablet() {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+//X_Tablet
+@mixin x_tablet() {
+  @media only screen and (max-width: 575px) {
+    @content;
+  }
+}
+//Mobil
+@mixin mobil() {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+//Small
+@mixin small() {
+  @media only screen and (max-width: 350px) {
+    @content;
+  }
+}
+//X_Small
+@mixin x_small() {
+  @media only screen and (max-width: 250px) {
+    @content;
+  }
+}
+
+//Align_İtems
+.align_items {
+  display: flex;
+  align-items: center;
+}
