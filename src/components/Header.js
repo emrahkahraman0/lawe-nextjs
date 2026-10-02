@@ -43,6 +43,7 @@ function Header() {
             <div className="header_logo">
               <Link href="/">
                 <Image
+                  className="img_fluid"
                   src="/header-logo.png"
                   width={250}
                   height={93}
