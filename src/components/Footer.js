@@ -46,7 +46,7 @@ function Footer() {
             </div>
             {/*footer_item*/}
             <div className="footer_item">
-              <h4>Contact Info</h4>
+              <h5>Contact Info</h5>
               <div className="desc">
                 <div className="desc_item">
                   <div className="icon">
@@ -91,7 +91,7 @@ function Footer() {
             </div>
             {/*footer_item*/}
             <div className="footer_item">
-              <h4>Practice Areas</h4>
+              <h5>Practice Areas</h5>
               <ul className="areas">
                 <li>
                   <Link href="/">Criminal Law</Link>
@@ -110,7 +110,7 @@ function Footer() {
             </div>
             {/*footer_item*/}
             <div className="footer_item">
-              <h4>Usefull Links</h4>
+              <h5>Usefull Links</h5>
               <ul className="links">
                 <li>
                   <Link href="/">Criminal Law</Link>
