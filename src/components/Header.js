@@ -1,25 +1,37 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import Topbar from "./Topbar";
 
 function Header() {
-  // Menü
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scroll, setScroll] = useState(false);
 
+  const currentRoute = usePathname();
+
+  // Hamburger
   function toggleMenu() {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   }
 
   function closeMenu() {
     setIsOpen(false);
+    setDropdownOpen(false);
+  }
+
+  // Dropdown
+  function toggleDropdown(e) {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      setDropdownOpen((prev) => !prev);
+    }
   }
 
   // Scroll
-  const [scroll, setScroll] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       setScroll(window.pageYOffset > 0);
@@ -32,16 +44,44 @@ function Header() {
     };
   }, []);
 
-  // Active
-  const currentRoute = usePathname();
+  // Route değişince kapat
+  useEffect(() => {
+    closeMenu();
+  }, [currentRoute]);
+
+  // ESC ile kapat
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  // Mobil menü açıkken body scroll engelle
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   return (
     <>
+      <Topbar />
       <div id="header" className={scroll ? "scroll" : ""}>
         <div className="container">
           <div className="header">
+            {/* Logo */}
             <div className="header_logo">
-              <Link href="/">
+              <Link href="/" onClick={closeMenu}>
                 <Image
                   className="img_fluid"
                   src="/header-logo.png"
@@ -52,9 +92,9 @@ function Header() {
                 />
               </Link>
             </div>
-            {/* header_logo */}
 
-            <ul ref={menuRef} className={`header_menu ${isOpen ? "open" : ""}`}>
+            {/* Menu */}
+            <ul className={`header_menu ${isOpen ? "open" : ""}`}>
               <li>
                 <Link
                   className={currentRoute === "/" ? "active" : ""}
@@ -64,15 +104,34 @@ function Header() {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  className={currentRoute === "/about" ? "active" : ""}
-                  href="/about"
-                  onClick={closeMenu}
-                >
-                  About Us
-                </Link>
-                <ul className="dropdown">
+
+              {/* About Us */}
+              <li className={dropdownOpen ? "dropdown_active" : ""}>
+                <div className="menu_dropdown">
+                  <Link
+                    className={
+                      ["/about", "/historys", "/faqs"].includes(currentRoute)
+                        ? "active"
+                        : ""
+                    }
+                    href="/about"
+                    onClick={toggleDropdown}
+                  >
+                    About Us
+                  </Link>
+
+                  <button
+                    type="button"
+                    className="dropdown_arrow"
+                    onClick={toggleDropdown}
+                    aria-label="About Us dropdown"
+                    aria-expanded={dropdownOpen}
+                  >
+                    <i className="fa-solid fa-chevron-down"></i>
+                  </button>
+                </div>
+
+                <ul className={`dropdown ${dropdownOpen ? "open" : ""}`}>
                   <li>
                     <Link
                       className={currentRoute === "/historys" ? "active" : ""}
@@ -82,6 +141,7 @@ function Header() {
                       Historys
                     </Link>
                   </li>
+
                   <li>
                     <Link
                       className={currentRoute === "/faqs" ? "active" : ""}
@@ -93,6 +153,7 @@ function Header() {
                   </li>
                 </ul>
               </li>
+
               <li>
                 <Link
                   className={currentRoute === "/attorneys" ? "active" : ""}
@@ -102,6 +163,7 @@ function Header() {
                   Attorneys
                 </Link>
               </li>
+
               <li>
                 <Link
                   className={currentRoute === "/case-study" ? "active" : ""}
@@ -111,6 +173,7 @@ function Header() {
                   Case-Study
                 </Link>
               </li>
+
               <li>
                 <Link
                   className={currentRoute === "/practice-areas" ? "active" : ""}
@@ -120,6 +183,7 @@ function Header() {
                   Practice Areas
                 </Link>
               </li>
+
               <li>
                 <Link
                   className={currentRoute === "/contact" ? "active" : ""}
@@ -130,22 +194,21 @@ function Header() {
                 </Link>
               </li>
             </ul>
-            {/* header_menu */}
 
-            <div
+            {/* Hamburger */}
+            <button
+              type="button"
               className={`header_hamburger ${isOpen ? "open" : ""}`}
               onClick={toggleMenu}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
             >
               <i className="fa-solid fa-bars icon bars"></i>
               <i className="fa-solid fa-xmark icon times"></i>
-            </div>
-            {/* header_hamburger */}
+            </button>
           </div>
-          {/* header */}
         </div>
-        {/* container */}
       </div>
-      {/* header# */}
     </>
   );
 }

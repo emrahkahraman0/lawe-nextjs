@@ -18,12 +18,76 @@ body {
   color: $primary_color;
 }
 
-//Header#
+//Topbar#
+#topbar {
+  width: 100%;
+  background-color: $primary_color;
+
+  //topbar
+  .topbar {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    //&_left
+    &_left {
+      display: flex;
+      align-items: center;
+
+      //&_item
+      &_item {
+        display: flex;
+        align-items: center;
+        margin-right: 110px;
+        &:last-child {
+          margin-right: 0;
+        }
+        i,
+        a {
+          color: $two_color;
+          font-size: $regular_size;
+        }
+        a {
+          padding-left: 16px;
+          font-family: $two_family;
+        }
+      }
+    }
+
+    //&_right
+    &_right {
+      li {
+        display: inline-block;
+        margin-right: 23px;
+        &:last-child {
+          margin-right: 0;
+        }
+        a {
+          i {
+            font-size: $regular_size;
+            color: $two_color;
+          }
+        }
+      }
+    }
+  }
+
+  //Notebook
+  @include notebook {
+    display: none;
+  }
+}
+
+// Header
 #header {
   width: 100%;
   background-color: $base_color;
+  position: relative;
+  z-index: 999;
+  transition: 0.3s all ease-in-out;
 
-  //header
+  // Header
   .header {
     display: flex;
     justify-content: space-between;
@@ -31,24 +95,32 @@ body {
     height: 100px;
     position: relative;
 
-    //&_logo
+    // Logo
     &_logo {
       position: relative;
-      z-index: 3;
+      z-index: 1000;
+      flex-shrink: 0;
+
       img {
         cursor: pointer;
+        display: block;
+        max-width: 100%;
+        height: auto;
       }
     }
 
-    //&_menu
+    // Menu
     &_menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+
       > li {
         display: inline-block;
         position: relative;
-        margin-right: 25px;
-        &:last-child {
-          margin-right: 0;
-        }
+        list-style: none;
+
+        // Main links
         > a {
           font-family: $one_family;
           color: $primary_color;
@@ -56,75 +128,144 @@ body {
           font-size: $medium_size;
           text-transform: capitalize;
           position: relative;
+          display: inline-block;
+          padding: 10px 0;
+          transition: 0.3s ease;
+
           &::before {
             position: absolute;
             width: 0;
-            margin: -3px 0;
-            transition: 0.4ms all ease-in-out;
             content: "";
             background-color: $two_color;
             height: 2px;
             border-radius: 2px;
             left: 0;
-            bottom: 0;
+            bottom: 5px;
+            transition: width 0.3s ease;
           }
-          &:hover {
+
+          &:hover,
+          &.active {
             color: $two_color;
+
             &::before {
               width: 100%;
             }
           }
-          &:not(:only-child):after {
-            padding-left: 5px;
-            content: "\f107";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
+        }
+
+        // Dropdown title
+        .menu_dropdown {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+
+          > a {
+            font-family: $one_family;
+            color: $primary_color;
+            font-weight: 500;
+            font-size: $regular_size;
+            text-transform: capitalize;
+            position: relative;
+            display: inline-block;
+            padding: 10px 0;
+            transition: 0.3s ease;
+
+            &::before {
+              position: absolute;
+              width: 0;
+              content: "";
+              background-color: $two_color;
+              height: 2px;
+              border-radius: 2px;
+              left: 0;
+              bottom: 5px;
+              transition: width 0.3s ease;
+            }
+
+            &:hover,
+            &.active {
+              color: $two_color;
+
+              &::before {
+                width: 100%;
+              }
+            }
+          }
+
+          // Arrow
+          .dropdown_arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            color: $primary_color;
+
+            i {
+              font-size: 12px;
+              transition: transform 0.3s ease;
+            }
+
+            &:hover {
+              color: $two_color;
+            }
           }
         }
 
-        //ul
-        .dropdown {
-          width: 200px;
+        // Dropdown
+        > .dropdown {
+          width: 220px;
           position: absolute;
-          top: 180%;
+          top: 100%;
           left: 0;
-          z-index: 2;
-          padding: 15px 0 15px 10px;
+          z-index: 10;
+          padding: 15px;
+          margin: 0;
           background-color: $two_color;
+          border-radius: 5px;
+          list-style: none;
+
           opacity: 0;
           visibility: hidden;
-          transition: 0.4ms all ease-in-out;
+          transform: translateY(10px);
+          transition: all 0.3s ease;
 
           li {
             display: block;
-            padding-bottom: 15px;
+            list-style: none;
+            padding-bottom: 12px;
 
             &:last-child {
               padding-bottom: 0;
             }
 
             a {
+              display: inline-block;
               font-family: $one_family;
               color: $base_color;
               font-weight: 400;
-              font-size: $large_size;
+              font-size: $regular_size;
               text-transform: capitalize;
               position: relative;
+              transition: 0.3s ease;
 
               &::before {
                 position: absolute;
                 width: 0;
-                margin: -3px 0;
-                transition: 0.4ms all ease-in-out;
                 content: "";
                 background-color: $base_color;
-                height: 3px;
+                height: 2px;
                 border-radius: 2px;
                 left: 0;
-                bottom: 0;
+                top: 15px;
+                transition: width 0.3s ease;
               }
 
-              &:hover {
+              &:hover,
+              &.active {
                 color: $base_color;
 
                 &::before {
@@ -133,150 +274,239 @@ body {
               }
             }
           }
+        }
 
-          .active {
-            position: relative;
+        // Active dropdown
+        &.dropdown_active {
+          > .menu_dropdown {
+            > a {
+              color: $two_color;
 
-            &::before {
-              position: absolute;
-              width: 0;
-              margin: -5px 0;
-              transition: 0.4ms all ease-in-out;
-              content: "";
-              background-color: $base_color;
-              height: 4px;
-              border-radius: 2px;
-              left: 0;
-              bottom: 0;
+              &::before {
+                width: 100%;
+              }
             }
-          }
 
-          .active,
-          a.active {
-            &::before {
-              width: 100%;
+            .dropdown_arrow {
+              color: $two_color;
+
+              i {
+                transform: rotate(180deg);
+              }
             }
-          }
-        }
-
-        &:hover {
-          ul {
-            opacity: 1;
-            visibility: visible;
-          }
-        }
-
-        .active {
-          position: relative;
-          &::before {
-            position: absolute;
-            width: 0;
-            margin: -3px 0;
-            transition: 0.4ms all ease-in-out;
-            content: "";
-            background-color: $two_color;
-            height: 2px;
-            border-radius: 2px;
-            left: 0;
-            bottom: 0;
-          }
-        }
-        .active,
-        a.active {
-          color: $two_color;
-          &::before {
-            width: 100%;
           }
         }
       }
     }
 
-    //&_hamburger
+    // Hamburger
     &_hamburger {
       display: none;
       position: absolute;
-      top: 35px;
+      top: 50%;
       right: 15px;
-      transition: 0.5s all ease-in-out;
+      transform: translateY(-50%);
+      transition: 0.3s ease;
       cursor: pointer;
-      z-index: 999;
+      z-index: 1001;
+      border: 0;
+      padding: 5px;
+      background: transparent;
+
       .icon {
         font-size: 30px;
         color: $two_color;
       }
+
+      .bars {
+        display: block;
+      }
+
+      .times {
+        display: none;
+      }
     }
 
-    //Notebook
+    // Notebook / Mobile
     @include notebook {
-      //&_menu
+      // Logo
+      &_logo {
+        position: relative;
+        z-index: 1000;
+      }
+
+      // Menu
       &_menu {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
+        height: 100dvh;
         background-color: $base_color;
-        z-index: 2;
-        text-align: center;
+        z-index: 998;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
-        transform: scale(0);
+        align-items: center;
+
         opacity: 0;
-        transition: opacity 650ms;
-        li {
+        visibility: hidden;
+        transform: scale(0.98);
+        pointer-events: none;
+
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease,
+          transform 0.35s ease;
+
+        > li {
           display: block;
+          width: 100%;
           margin-right: 0;
-          padding-bottom: 30px;
+
+          text-align: center;
+
           &:last-child {
             padding-bottom: 0;
           }
-          a {
+
+          // Normal links
+          > a {
             font-size: $regular_size;
             font-weight: 500;
             color: $primary_color;
-            &::before {
-              background-color: $two_color;
+          }
+
+          // Dropdown title
+          .menu_dropdown {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            > a {
+              font-size: $regular_size;
+              font-weight: 500;
+              color: $primary_color;
+            }
+
+            // Arrow
+            .dropdown_arrow {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              background: transparent;
+              border: 0;
+              padding: 8px;
+              color: $primary_color;
+              cursor: pointer;
+
+              i {
+                font-size: 13px;
+                transition: transform 0.3s ease;
+              }
             }
           }
-          //dropdown
-          .dropdown {
+
+          // Mobile dropdown
+          > .dropdown {
+            position: static;
+            display: block;
             width: 100%;
-            top: 30px;
-            padding: 15px 0;
+            max-height: 0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+
+            background-color: $two_color;
+            border-radius: 0;
+            list-style: none;
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+
+            transition:
+              max-height 0.35s ease,
+              padding 0.35s ease,
+              opacity 0.3s ease,
+              transform 0.3s ease,
+              visibility 0.3s ease;
+
             li {
-              padding-bottom: 12px;
+              display: block;
+              padding: 10px 0;
+
               &:last-child {
-                padding-bottom: 0;
+                padding-bottom: 10px;
               }
+
               a {
-                font-size: 12px;
+                display: inline-block;
+                font-size: $regular_size;
                 line-height: normal;
+                color: $base_color;
+              }
+            }
+          }
+
+          // Dropdown OPEN
+          > .dropdown.open {
+            max-height: 400px;
+            padding: 10px 0;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+          }
+
+          // Dropdown active arrow
+          &.dropdown_active {
+            > .menu_dropdown {
+              > a {
+                color: $two_color;
+              }
+
+              .dropdown_arrow {
+                color: $two_color;
+
+                i {
+                  transform: rotate(180deg);
+                }
               }
             }
           }
         }
       }
-      //dropdown
-      .dropdown.open {
-        opacity: 1;
-      }
+
+      // Menu OPEN
       &_menu.open {
         opacity: 1;
+        visibility: visible;
         transform: scale(1);
+        pointer-events: auto;
       }
 
-      //&_hamburger
+      // Hamburger
       &_hamburger {
         display: block;
+        z-index: 1001;
+
+        .bars {
+          display: block;
+        }
+
         .times {
           display: none;
         }
       }
+
+      // Hamburger OPEN
       &_hamburger.open {
         .bars {
           display: none;
         }
+
         .times {
           display: block;
         }
@@ -284,6 +514,30 @@ body {
     }
   }
 }
+
+// Desktop dropdown hover
+@media (min-width: 993px) {
+  #header {
+    .header_menu {
+      > li {
+        &:hover {
+          > .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+          }
+
+          > .menu_dropdown {
+            .dropdown_arrow i {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 #header.scroll {
   position: sticky;
   top: 0;
@@ -298,7 +552,7 @@ body {
     height: 80px;
     //&_hamburger
     &_hamburger {
-      top: 27px;
+      top: 41px;
     }
   }
 }
@@ -360,11 +614,12 @@ body {
         text-transform: capitalize;
         font-size: 24px;
         line-height: normal;
+        margin-bottom: 50px;
         position: relative;
         &::before {
           content: "";
           position: absolute;
-          top: 100%;
+          bottom: -20px;
           left: 0;
           width: 30px;
           height: 1px;
@@ -376,12 +631,188 @@ body {
       .desc {
         //&_item
         &_item {
+          display: flex;
+          padding-bottom: 20px;
+          &:last-child {
+            padding-bottom: 0;
+          }
+          //icon
+          .icon {
+            i {
+              color: $two_color;
+            }
+          }
+          .text {
+            padding-left: 20px;
+            h4,
+            a {
+              font-family: $two_family;
+              font-size: $regular_size;
+              line-height: normal;
+              font-weight: 400;
+              color: $base_color;
+            }
+          }
         }
       }
 
       //areas
+      .areas {
+        li {
+          display: block;
+          padding-left: 23px;
+          padding-bottom: 10px;
+          &:last-child {
+            padding-bottom: 0;
+          }
+          a {
+            color: $base_color;
+            font-family: $two_family;
+            font-size: $regular_size;
+            position: relative;
+            &::before {
+              content: "\f178";
+              position: absolute;
+              top: 2px;
+              left: -23px;
+              font-family: "Font Awesome 6 Free";
+              font-weight: 900;
+            }
+          }
+        }
+      }
 
       //links
+      .links {
+        li {
+          display: block;
+          padding-left: 23px;
+          padding-bottom: 10px;
+          &:last-child {
+            padding-bottom: 0;
+          }
+          a {
+            color: $base_color;
+            font-family: $two_family;
+            font-size: $regular_size;
+            position: relative;
+            &::before {
+              content: "\f054";
+              position: absolute;
+              top: 2px;
+              left: -23px;
+              font-family: "Font Awesome 6 Free";
+              font-weight: 900;
+            }
+          }
+        }
+      }
+
+      //Large
+      @include large {
+        margin-bottom: 30px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        //socials
+        .socials {
+          padding-top: 40px;
+        }
+        h5 {
+          font-size: 22px;
+          margin-bottom: 40px;
+          &::before {
+            bottom: -12px;
+          }
+        }
+      }
+      //Notebook
+      @include notebook {
+        //socials
+        .socials {
+          padding-top: 40px;
+        }
+        h5 {
+          font-size: $x_large_size;
+          margin-bottom: 35px;
+          &::before {
+            bottom: -10px;
+          }
+        }
+        //desc
+        .desc {
+          //&_item
+          &_item {
+            padding-bottom: 15px;
+            &:last-child {
+              padding-bottom: 0;
+            }
+            .text {
+              padding-left: 15px;
+            }
+          }
+        }
+      }
+      //X_Tablet
+      @include x_tablet {
+        text-align: center;
+        p {
+          font-size: $small_size;
+          line-height: 16px;
+        }
+        //socials
+        .socials {
+          padding-top: 30px;
+          li {
+            margin-right: 8px;
+            a {
+              i {
+                width: 30px;
+                height: 30px;
+                font-size: $small_size;
+              }
+            }
+          }
+        }
+        h5 {
+          font-size: $large_size;
+          margin-bottom: 35px;
+          &::before {
+            bottom: -10px;
+            right: 0;
+            margin: 0 auto;
+          }
+        }
+        //desc
+        .desc {
+          //&_item
+          &_item {
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 10px;
+            &:last-child {
+              padding-bottom: 0;
+            }
+            .text {
+              padding-left: 10px;
+              h4,
+              a {
+                font-size: $small_size;
+              }
+            }
+          }
+        }
+        //areas
+        .areas,
+        .links {
+          li {
+            padding-bottom: 8px;
+            a {
+              font-size: $small_size;
+            }
+          }
+        }
+      }
     }
   }
 }

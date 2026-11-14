@@ -82,7 +82,7 @@ function Footer() {
                     <i className="fa-regular fa-clock"></i>
                   </div>
                   <div className="text">
-                    <h4>99 S.t Jomblo Park Pekanbaru 28292 Indonesia</h4>
+                    <h4>Mon - Sat 09:00 - 17:00</h4>
                   </div>
                 </div>
                 {/*desc_item*/}
